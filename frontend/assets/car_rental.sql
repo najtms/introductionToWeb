@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 9.2.0, for macos14.7 (x86_64)
 --
--- Host: localhost    Database: car_rental_MYSQL
+-- Host: localhost    Database: car_rental_mysql
 -- ------------------------------------------------------
 -- Server version	8.0.32
 
@@ -172,9 +172,9 @@ INSERT INTO `User` VALUES (1,'Ibiz','Mocart','r','0923312','A092SCAS','test@ibu.
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'car_rental_MYSQL'
+-- Dumping events for database 'car_rental_mysql'
 --
 
 --
--- Dumping routines for database 'car_rental_MYSQL'
+-- Dumping routines for database 'car_rental_mysql'
 --
