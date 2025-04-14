@@ -11,4 +11,25 @@ class LocationService extends BaseService
         $this->dao = new LocationDAO();
         parent::__construct($this->dao);
     }
+
+    public function createLocation($Country, $State, $City, $Street, $Zip)
+    {
+        if (strlen($Zip) < 5) {
+            throw new Exception("Invalid ZIP code");
+        }
+        return $this->dao->createLocation($Country, $State, $City, $Street, $Zip);
+    }
+
+    public function updateLocation($id, $Country, $State, $City, $Street, $Zip)
+    {
+        if (strlen($Zip) < 5) {
+            throw new Exception("Invalid ZIP code");
+        }
+        return $this->dao->updateLocation($id, $Country, $State, $City, $Street, $Zip);
+    }
+
+    public function getByZip($Zip)
+    {
+        return $this->dao->zipLocation($Zip);
+    }
 }

@@ -21,9 +21,9 @@ $userDAO = new UserDAO();
 $userService = new UserService();
 
 //DAOs
-//$result = $userDAO->getByEmail("test@bu.edu.ba");
+//$result = $userDAO->getByEmail("test@ibu.edu.ba");
 //$result = $userDAO->verifyPassword("test@ibu.edu.ba", "r");
-//$result = $userDAO->CreatingAccount("email@ow.com", "fitone");
+//$result = $userDAO->CreatingAccount("esdsdsmail@ow.com", "fitone");
 //$result = $userDAO->UserEdit(4, "Rafa", "Jafa", "03322102", "HDISAFI3");
 //$result = $userDAO->DeleteUser("test@ibu.edu.ba);
 
