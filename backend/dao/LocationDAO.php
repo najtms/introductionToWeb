@@ -11,25 +11,30 @@ class LocationDAO extends BaseDAO
 
     public function createLocation($Country, $State, $City, $Street, $Zip)
     {
-        $sql = "INSERT INTO Location (Country,`State`,City,Street,Zip) VALUES (:Country,:State,:City,:Street,:Zip)";
+        $sql = "INSERT INTO Location (Country, `State`, City, Street, Zip) 
+                VALUES (:Country, :State, :City, :Street, :Zip)";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(":Country", $Country);
         $stmt->bindParam(":State", $State);
         $stmt->bindParam(":City", $City);
         $stmt->bindParam(":Street", $Street);
         $stmt->bindParam(":Zip", $Zip);
-        return $stmt->execute();
+
+        if ($stmt->execute()) {
+            return $this->connection->lastInsertId(); // Return inserted ID
+        }
+        return false;
     }
 
     public function updateLocation($id, $Country, $State, $City, $Street, $Zip)
     {
         $sql = "UPDATE Location 
-                    SET `Country` = :Country, 
-                        `State` = :State, 
-                        `City` = :City, 
-                        `Street` = :Street, 
-                        `Zip` = :Zip 
-                    WHERE location_id = :id";
+                SET Country = :Country, 
+                    `State` = :State, 
+                    City = :City, 
+                    Street = :Street, 
+                    Zip = :Zip 
+                WHERE location_id = :id";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(":id", $id);
@@ -39,7 +44,7 @@ class LocationDAO extends BaseDAO
         $stmt->bindParam(":Street", $Street);
         $stmt->bindParam(":Zip", $Zip);
 
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     public function zipLocation($Zip)
@@ -49,6 +54,6 @@ class LocationDAO extends BaseDAO
         $stmt->bindParam(":Zip", $Zip);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
     }
 }

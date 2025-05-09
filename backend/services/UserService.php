@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/BaseService.php";
-require_once __DIR__ . "/../dao/UserDAO.php";
+require_once __DIR__ . '/BaseService.php';
+require_once __DIR__ . '/../dao/UserDAO.php';
 
 class UserService extends BaseService
 {
@@ -30,11 +30,11 @@ class UserService extends BaseService
         return $this->dao->verifyPassword($email, $password);
     }
 
-    public function CreatingAccount($email, $passowrd)
+    public function CreatingAccount($email, $password)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            if (strlen($passowrd) > 6) {
-                return $this->dao->CreatingAccount($email, $passowrd);
+            if (strlen($$password) > 6) {
+                return $this->dao->CreatingAccount($email, $$password);
             } else {
                 throw new Exception("Password is short");
             }

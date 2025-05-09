@@ -1,8 +1,8 @@
 <?php
 class Database
 {
-    private static $host = 'localhost';
-    private static $dbName = 'car_rental_MYSQL';
+    private static $host = '127.0.0.1'; //Localhost doesn't work it breaks POSTMAN
+    private static $dbName = 'car_rental_mysql';
     private static $username = 'root';
     private static $password = 'root';
     private static $connection = null;
@@ -13,7 +13,7 @@ class Database
         if (self::$connection === null) {
             try {
                 self::$connection = new PDO(
-                    "mysql:host=" . self::$host . ";dbname=" . self::$dbName,
+                    "mysql:host=" . self::$host . ";port=3306;dbname=" . self::$dbName, // Specify port here
                     self::$username,
                     self::$password,
                     [
