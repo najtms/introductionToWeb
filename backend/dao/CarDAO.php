@@ -6,7 +6,7 @@ class CarDAO extends BaseDAO
 {
     public function __construct()
     {
-        parent::__construct("Cars");
+        parent::__construct("Cars", "car_id");
     }
     //Mainly backend for Admins to add new cars to the system
     public function creatingCar(
@@ -21,11 +21,13 @@ class CarDAO extends BaseDAO
         $transmissions,
         $seats,
         $cartype,
-        $imgurl
+        $imgurl,
+        $Price,
+        $Location
     ) {
         $sql = "INSERT INTO Cars(Brand,Model,Year,License_plate,availablity_status,engine,kilometers
-        ,fueltype,transmissions,seats,cartype,imgurl) VALUES (:Brand,:Model,:Year,:License_plate,:availablity_status,:engine,:kilometers
-        ,:fueltype,:transmissions,:seats,:cartype,:imgur)";
+        ,fueltype,transmissions,seats,cartype,imgurl,Price,Location) VALUES (:Brand,:Model,:Year,:License_plate,:availablity_status,:engine,:kilometers
+        ,:fueltype,:transmissions,:seats,:cartype,:imgur,:Price,:Location)";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->BindParam(":Brand", $Brand);
@@ -40,6 +42,8 @@ class CarDAO extends BaseDAO
         $stmt->BindParam(":seats", $seats);
         $stmt->BindParam(":cartype", $cartype);
         $stmt->BindParam(":imgur", $imgurl);
+        $stmt->BindParam(":Price", $Price);
+        $stmt->BindParam(":Location", $Location);
 
         return $stmt->execute();
     }
@@ -109,5 +113,39 @@ class CarDAO extends BaseDAO
         $stmt->bindParam(":Brand", $Brand);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public function getAllBycartype($cartype)
+    {
+        $sql = "SELECT * FROM Cars WHERE cartype = :cartype";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(":cartype", $cartype);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getThreeBycartype($cartype, $limit = 3)
+    {
+        $sql = "SELECT * FROM Cars WHERE cartype = :cartype LIMIT :limit";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(":cartype", $cartype);
+        $stmt->bindParam(":limit", $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getThreeRandomCars()
+    {
+        $sql = "SELECT * FROM Cars ORDER BY RAND() LIMIT 3";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function deleteByID($car_id)
+    {
+        $sql = "DELETE FROM Cars WHERE car_id = :car_id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(":car_id", $car_id);
+        return $stmt->execute();
     }
 }

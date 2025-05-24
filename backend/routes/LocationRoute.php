@@ -9,6 +9,9 @@ Flight::set('locationService', new LocationService());
  *     path="/location",
  *     summary="Create a new location",
  *     tags={"Location"},
+ *    security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\RequestBody(
  *         required=true,
  *         @OA\JsonContent(
@@ -31,6 +34,7 @@ Flight::set('locationService', new LocationService());
 
 
 Flight::route('POST /location', function () {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     $data = Flight::request()->data->getData();
     Flight::json(Flight::get('locationService')->createLocation(
         $data['Country'],
@@ -48,6 +52,9 @@ Flight::route('POST /location', function () {
  *     path="/location/{id}",
  *     summary="Update a location",
  *     tags={"Location"},
+ *    security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
@@ -73,6 +80,7 @@ Flight::route('POST /location', function () {
 
 
 Flight::route('PUT /location/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     $data = Flight::request()->data->getData();
     Flight::json(Flight::get('locationService')->updateLocation(
         $id,
@@ -91,6 +99,9 @@ Flight::route('PUT /location/@id', function ($id) {
  *     path="/location/zip/{zip}",
  *     summary="Get location by ZIP",
  *     tags={"Location"},
+ *    security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\Parameter(
  *         name="zip",
  *         in="path",
@@ -105,6 +116,7 @@ Flight::route('PUT /location/@id', function ($id) {
  */
 
 Flight::route('GET /location/zip/@zip', function ($zip) {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     Flight::json(Flight::get('locationService')->getByZip($zip));
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

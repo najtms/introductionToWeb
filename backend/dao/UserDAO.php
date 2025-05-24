@@ -6,7 +6,7 @@ class UserDAO extends BaseDAO
 {
     public function __construct()
     {
-        parent::__construct("User");
+        parent::__construct("User", "user_id");
     }
     // Get Email All using Email
     public function getByEmail($email)
@@ -73,5 +73,22 @@ class UserDAO extends BaseDAO
         $stmt = $this->connection->prepare($sql);
         $stmt->BindParam(":email", $email);
         $stmt->execute();
+    }
+
+    public function get_user_by_email_user($email)
+    {
+        $sql = "SELECT email,FirstName,LastName,Phone,DriverLicense  FROM User WHERE email = :email";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->BindParam(":email", $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function get_user_by_id_user($user_id)
+    {
+        $sql = "SELECT email,FirstName,LastName,Phone,DriverLicense  FROM User WHERE user_id = :user_id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->BindParam(":user_id", $user_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

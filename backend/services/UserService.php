@@ -21,6 +21,15 @@ class UserService extends BaseService
         }
     }
 
+    public function get_user_by_email_user($email)
+    {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return $this->dao->get_user_by_email_user($email);
+        } else {
+            throw new Exception("Invalid Email form");
+        }
+    }
+
     public function verifyPassword($email, $password)
     {
         $user = $this->getByEmail($email);
@@ -58,5 +67,13 @@ class UserService extends BaseService
             throw new Exception("Invalid email format");
         }
         return $this->dao->DeleteUser($email);
+    }
+    public function get_user_by_id_user($id) {
+        if (is_numeric($id)) {
+            return $this->dao->get_user_by_id_user($id);
+        } else {
+            throw new Exception("Invalid ID");
+        }
+        
     }
 }
