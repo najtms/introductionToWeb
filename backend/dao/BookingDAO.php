@@ -6,7 +6,7 @@ class BookingDAO extends BaseDAO
 {
     public function __construct()
     {
-        parent::__construct("Booking");
+        parent::__construct("Booking", "booking_id");
     }
 
     public function createBooking($start_date, $end_date, $price, $user_id, $fk_location_id, $fk_payment, $fk_car_id)

@@ -1,0 +1,321 @@
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Admin Dashboard - Car Management</h2>
+
+    <!-- Add New Car (Collapsible) -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <a class="text-white text-decoration-none" href="#" onclick="event.preventDefault(); $('#addCarCollapse').collapse('toggle'); return false;">
+                Add New Car <span class="ms-2"><i class="bi bi-chevron-down"></i></span>
+            </a>
+        </div>
+        <div class="collapse" id="addCarCollapse">
+            <div class="card-body">
+                <form id="add-car-form">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>Brand</label>
+                            <input type="text" class="form-control" name="Brand" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Model</label>
+                            <input type="text" class="form-control" name="Model" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Year</label>
+                            <input type="number" class="form-control" name="Year" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>License Plate</label>
+                            <input type="text" class="form-control" name="License_plate" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Availability Status</label>
+                            <select class="form-control" name="availablity_status" required>
+                                <option value="1">Available</option>
+                                <option value="0">Not Available</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Engine</label>
+                            <input type="text" class="form-control" name="engine" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Kilometers</label>
+                            <input type="number" class="form-control" name="kilometers" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Fuel Type</label>
+                            <select class="form-control" name="fueltype" required>
+                                <option>Petrol</option>
+                                <option>Diesel</option>
+                                <option>Electric</option>
+                                <option>Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Transmission</label>
+                            <select class="form-control" name="transmissions" required>
+                                <option>Manual</option>
+                                <option>Automatic</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Seats</label>
+                            <input type="number" class="form-control" name="seats" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Car Type</label>
+                            <input type="text" class="form-control" name="cartype" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Image URL</label>
+                            <input type="text" class="form-control" name="imgurl" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Price</label>
+                            <input type="number" class="form-control" name="Price" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Location</label>
+                            <input type="text" class="form-control" name="Location" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add Car</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Car (Collapsible) -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <a class="text-dark text-decoration-none" href="#" onclick="event.preventDefault(); $('#updateCarCollapse').collapse('toggle'); return false;">
+                Update Car <span class="ms-2"><i class="bi bi-chevron-down"></i></span>
+            </a>
+        </div>
+        <div class="collapse" id="updateCarCollapse">
+            <div class="card-body">
+                <form id="update-car-form">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>Car ID</label>
+                            <input type="number" class="form-control" name="car_id" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Brand</label>
+                            <input type="text" class="form-control" name="Brand" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Model</label>
+                            <input type="text" class="form-control" name="Model" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Year</label>
+                            <input type="number" class="form-control" name="Year" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>License Plate</label>
+                            <input type="text" class="form-control" name="License_plate" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Availability Status</label>
+                            <select class="form-control" name="availablity_status" required>
+                                <option value="1">Available</option>
+                                <option value="0">Not Available</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Engine</label>
+                            <input type="text" class="form-control" name="engine" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Kilometers</label>
+                            <input type="number" class="form-control" name="kilometers" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Fuel Type</label>
+                            <select class="form-control" name="fueltype" required>
+                                <option>Petrol</option>
+                                <option>Diesel</option>
+                                <option>Electric</option>
+                                <option>Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Transmission</label>
+                            <select class="form-control" name="transmissions" required>
+                                <option>Manual</option>
+                                <option>Automatic</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Seats</label>
+                            <input type="number" class="form-control" name="seats" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Car Type</label>
+                            <input type="text" class="form-control" name="cartype" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Image URL</label>
+                            <input type="text" class="form-control" name="imgurl" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Price</label>
+                            <input type="number" class="form-control" name="Price" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Location</label>
+                            <input type="text" class="form-control" name="Location" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Update Car</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Car List Table -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">All Cars</div>
+        <div class="card-body">
+            <table class="table table-bordered" id="cars-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>License Plate</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Location</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Cars will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Edit Car Modal -->
+    <div class="modal fade" id="editCarModal" tabindex="-1" aria-labelledby="editCarModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <form id="edit-car-form">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editCarModalLabel">Edit Car</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                <input type="hidden" name="car_id" id="edit-car-id">
+                <div class="col-md-6 mb-3">
+                    <label>Brand</label>
+                    <input type="text" class="form-control" name="Brand" id="edit-Brand" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Model</label>
+                    <input type="text" class="form-control" name="Model" id="edit-Model" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Year</label>
+                    <input type="number" class="form-control" name="Year" id="edit-Year" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>License Plate</label>
+                    <input type="text" class="form-control" name="License_plate" id="edit-License_plate" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Availability Status</label>
+                    <select class="form-control" name="availablity_status" id="edit-availablity_status" required>
+                        <option value="1">Available</option>
+                        <option value="0">Not Available</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Engine</label>
+                    <input type="text" class="form-control" name="engine" id="edit-engine" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Kilometers</label>
+                    <input type="number" class="form-control" name="kilometers" id="edit-kilometers" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Fuel Type</label>
+                    <select class="form-control" name="fueltype" id="edit-fueltype" required>
+                        <option>Petrol</option>
+                        <option>Diesel</option>
+                        <option>Electric</option>
+                        <option>Hybrid</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Transmission</label>
+                    <select class="form-control" name="transmissions" id="edit-transmissions" required>
+                        <option>Manual</option>
+                        <option>Automatic</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Seats</label>
+                    <input type="number" class="form-control" name="seats" id="edit-seats" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Car Type</label>
+                    <input type="text" class="form-control" name="cartype" id="edit-cartype" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Image URL</label>
+                    <input type="text" class="form-control" name="imgurl" id="edit-imgurl" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Price</label>
+                    <input type="number" class="form-control" name="Price" id="edit-Price" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Location</label>
+                    <input type="text" class="form-control" name="Location" id="edit-Location" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    fetchCars();
+    $(document).off("click", ".delete-car-btn");
+    $(document).on("click", ".delete-car-btn", function(e) {
+        e.stopImmediatePropagation();
+        const carId = $(this).data("car-id");
+        if (!confirm("Are you sure you want to delete car with ID " + carId + "?")) {
+            return;
+        }
+        deleteCar(carId, function() {
+            alert("Car deleted successfully!");
+            fetchCars();
+            if (typeof loadCars === "function") {
+                if ($("#hatchback-cars").length) loadCars("Hatchback", "#hatchback-cars");
+                if ($("#sportcar-cars").length) loadCars("Sport", "#sportcar-cars");
+                if ($("#wagons-cars").length) loadCars("Wagon", "#wagons-cars");
+                if ($("#suvs-cars").length) loadCars("Suv", "#suvs-cars");
+            }
+        }, function(errorMsg) {
+            alert("Failed to delete car: " + errorMsg);
+        });
+    });
+});
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="services/CarsAdmin.js"></script>

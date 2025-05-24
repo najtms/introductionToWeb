@@ -1,5 +1,4 @@
-
-    <!-- Header-->
+<!-- Header-->
     <div class="bg-dark py-maxim bg-image ">
         <div class="container px-5">
             <div class="row gx-5 justify-content-center">
@@ -38,116 +37,18 @@
             </div>
         </div>
     </section>
-    <!-- Hatchbacks -->
+    <!-- Random Cars Section -->
     <section class="bg-light py-5 border-bottom">
         <div class="container px-5 my-5">
             <div class="text-center mb-5">
                 <h2 class="fw-bolder">Enjoy Bosnia and Herzegovina</h2>
                 <p class="lead mb-0">in style</p>
             </div>
-            <div class="row gx-5 justify-content-center">
-                <!-- Alfa Romeo -->
-                <div class="col-lg-6 col-xl-4">
-                    <div class="card mb-5 mb-xl-0">
-                        <div class="card-body p-5 w-h">
-                            <div class="small fw-bold">Alfa Romeo 147</div>
-                            <div class="small fw-bold text-muted fs-7">or similar hatchbacks</div>
-                            <div class="mb-3">
-                                <img class="img-fluid" src="https://static.carfromjapan.com/spec_2791190e-f84e-42e4-b5ae-d40bc46332cb_640_0" alt="Hello">
-                            </div>
-                            <div class="lines-div"></div>
-                            <ul class="list-unstyled mt-2 mb-2">
-                                <li class="">
-                                    <i class="bi bi-pin-angle-fill"></i>
-                                    <strong>Sarajevo international Airport</strong>
-                                </li>
-                            </ul>
-                            <div class="lines-div"></div>
-                            <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-                                <li class="text-muted">
-                                    <strong>Price for 2 Days</strong>
-                                </li>
-                                <li class="fs-5">
-                                    <strong>BAM 199.95</strong>
-                                </li>
-                                <li class="text-muted fs-7">
-                                    From X Fri - X Monday
-                                </li>
-                            </ul>
-                            <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Alfa Romeo 147">Reserve Now!</a></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- vw golf-->
-                <div class="col-lg-6 col-xl-4">
-                    <div class="card mb-5 mb-xl-0">
-                        <div class="card-body p-5 w-h">
-                            <div class="small fw-bold">Audi TT</div>
-                            <div class="small fw-bold text-muted fs-7">or similar sport cars</div>
-                            <div class="mb-3">
-                                <img class="img-fluid" src="https://freepngimg.com/save/31679-audi/440x247" alt="Hello">
-                            </div>
-                            <div class="lines-div"></div>
-                            <ul class="list-unstyled mt-2 mb-2">
-                                <li class="">
-                                    <i class="bi bi-pin-angle-fill"></i>
-                                    <strong>Sarajevo international Airport</strong>
-                                </li>
-                            </ul>
-                            <div class="lines-div"></div>
-                            <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-                                <li class="text-muted">
-                                    <strong>Price for 2 Days</strong>
-                                </li>
-                                <li class="fs-5">
-                                    <strong>BAM 350.00</strong>
-                                </li>
-                                <li class="text-muted fs-7">
-                                    From X Fri - X Monday
-                                </li>
-                            </ul>
-                            <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Audi TT">Reserve Now!</a></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pricing card enterprise-->
-                <div class="col-lg-6 col-xl-4">
-                    <div class="card mb-5 mb-xl-0">
-                        <div class="card-body p-5 w-h">
-                            <div class="small fw-bold">Audi RS6 Avant</div>
-                            <div class="small fw-bold text-muted fs-7">or similar estates</div>
-                            <div class="mb-3">
-                                <img class="img-fluid" src="https://imgd.aeplcdn.com/642x336/ec/EF/B6/18994/img/m/Audi-RS6-Right-Front-Three-Quarter-52753_ol.jpg?v=201711021421&q=80" alt="Hello">
-                            </div>
-                            <div class="lines-div"></div>
-                            <ul class="list-unstyled mt-2 mb-2">
-                                <li class="">
-                                    <i class="bi bi-pin-angle-fill"></i>
-                                    <strong>Sarajevo international Airport</strong>
-                                </li>
-                            </ul>
-                            <div class="lines-div"></div>
-                            <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-                                <li class="text-muted">
-                                    <strong>Price for 2 Days</strong>
-                                </li>
-                                <li class="fs-5">
-                                    <strong>BAM 220.95</strong>
-                                </li>
-                                <li class="text-muted fs-7">
-                                    From X Fri - X Monday
-                                </li>
-                            </ul>                              
-                            <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Audi RS6 Avant">Reserve Now!</a></div>
-                        </div>
-                    </div>
-                </div>
-                </div>
+            <div class="row gx-5 justify-content-center card-deck" id="random-cars-section">
+                <!-- Random cars will be loaded here -->
             </div>
         </div>
     </section>
-
-    
     <!-- Testimonials section-->
     <section class="py-5 border-bottom">
         <div class="container px-5 my-5 px-5">
@@ -287,12 +188,13 @@
                   document.getElementById("SubmitTwo").style.background = "Green";
                        }
       </script>
-    
-    
-    
-    
-    
-    
-
+    <script>
+    // Dynamically load 3 random cars when mainpage is loaded (works for direct load or SPA)
+    $(document).ready(function() {
+        if ($('#random-cars-section').length && typeof loadRandomCars === "function") {
+            loadRandomCars('#random-cars-section');
+        }
+    });
+</script>
 </body>
 </html>

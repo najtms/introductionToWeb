@@ -1,5 +1,7 @@
 <?php
 
+use OpenApi\Attributes as OA;
+
 /**
  * @OA\Info(
  *     title="Introduction to Web",
@@ -9,18 +11,18 @@
  *         email="muhamad.assaad@stu.ibu.edu.ba",
  *         name="Muhamad Assaad"
  *     )
- * )
- *
+ * ),
  * @OA\Server(
  *     url="http://localhost:8888/MuhamadAssaad/introductionToWeb/backend/",
  *     description="API server"
- * )
- *
+ * ),
  * @OA\SecurityScheme(
- *     securityScheme="ApiKey",
- *     type="apiKey",
- *     in="header",
- *     name="Authentication"
+ *     securityScheme="bearerAuth",
+ *     type="http",
+ *     scheme="bearer",
+ *     bearerFormat="JWT"
  * )
  */
+
+
 class OpenApiSetup {}

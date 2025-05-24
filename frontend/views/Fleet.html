@@ -7,448 +7,107 @@
                     <h1 class="display-5 fw-bolder text-white mb-2">Browse our selection </h1>
                 </div>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <a class="btn btn-dark btn-lg px-4 me-sm-2" href="#hetchbeck">Hatchbacks</a>
-                        <a class="btn btn-dark btn-lg px-4 me-sm-2" href="#sportcar">Sport cars</a>
-                        <a class="btn btn-dark btn-lg px-4 me-sm-2" href="#wagons">Wagons</a>
-                        <a class="btn btn-dark btn-lg px-4 me-sm-2" href="#suvs">SUVs</a>
-
+                        <a class="btn btn-dark btn-lg px-4 me-sm-2" href="#hatchback-section">Hatchbacks</a>
+                        <a class="btn btn-dark btn-lg px-4 me-sm-2" href="#sportcar-section">Sport cars</a>
+                        <a class="btn btn-dark btn-lg px-4 me-sm-2" href="#wagon-section">Wagons</a>
+                        <a class="btn btn-dark btn-lg px-4 me-sm-2" href="#suvs-section">SUVs</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-<section class="bg-light py-5 border-bottom" id="hetchbeck">
+<!-- Hatchbacks -->
+<section class="bg-light py-5 border-bottom" id="hatchback-section">
     <div class="container px-5 my-5">
         <div class="text-center mb-5">
             <p class="lead mb-0 text-muted">Hatchbacks</p>
         </div>
-<div class="row gx-5 justify-content-center card-deck">
-    <!-- Alfa romeo -->
-    <div class="col-lg-6 col-xl-4">
-        <div class="card mb-5 mb-xl-0">
-            <div class="card-body p-5 w-h">
-                <div class="small fw-bold">Alfa Romeo 147</div>
-                <div class="small fw-bold text-muted fs-7">or similar hatchbacks</div>
-                <div class="mb-3">
-                    <img class="img-wh" src="https://static.carfromjapan.com/spec_2791190e-f84e-42e4-b5ae-d40bc46332cb_640_0" alt="Hello">
+        <div class="row gx-5 justify-content-center card-deck" id="hatchback-cars">
+        </div>
+    </div>
+</section>
+<!-- SportCars -->
+<section class="bg-light py-5 border-bottom" id="sportcar-section">
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <p class="lead mb-0 text-muted">Sport Cars</p>
+        </div>
+        <div class="row gx-5 justify-content-center card-deck" id="sportcar-cars">
+        </div>
+    </div>
+</section>
+<!-- Wagons -->
+<section class="bg-light py-5 border-bottom" id="wagon-section">
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <p class="lead mb-0 text-muted">Wagon</p>
+        </div>
+        <div class="row gx-5 justify-content-center card-deck" id="wagons-cars">
+        </div>
+    </div>
+</section>
+<!-- SUVs -->
+<section class="bg-light py-5 border-bottom" id="suvs-section">
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <p class="lead mb-0 text-muted">SUVs</p>
+        </div>
+        <div class="row gx-5 justify-content-center card-deck" id="suvs-cars">
+        </div>
+    </div>
+</section>    
+
+<div class="modal fade" id="carModal" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="carModalLabel">Reserve Car</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img id="modalCarImage" src="" alt="Car image" class="img-fluid mb-3" style="max-height: 250px;">
+                        <h5><strong id="modalCarName"></strong></h5> <p><i class="bi bi-geo-alt-fill"></i> Location: <strong id="modalCarLocation"></strong></p>
+                        <p>Price for 2 Days: <strong id="modalCarPrice"></strong></p>
+                        <p>Availability: <strong id="modalCarAvailability"></strong></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Reservation Details</h6>
+                        <form id="reservationForm">
+                            <input type="hidden" id="reservationCarId" name="car_id">
+                            <div class="form-group mb-3">
+                                <label for="pickUpDate">Pick-up Date:</label>
+                                <input type="date" class="form-control" id="pickUpDate" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="returnDate">Return Date:</label>
+                                <input type="date" class="form-control" id="returnDate" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="customerName">Your Name:</label>
+                                <input type="text" class="form-control" id="customerName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="customerEmail">Your Email:</label>
+                                <input type="email" class="form-control" id="customerEmail" placeholder="Enter your email" required>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="lines-div"></div>
-                <ul class="list-unstyled mt-2 mb-2">
-                    <li class="">
-                        <i class="bi bi-pin-angle-fill"></i>
-                        <strong>Sarajevo international Airport</strong>
-                    </li>
-                </ul>
-                <div class="lines-div"></div>
-                <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-                    <li class="text-muted">
-                        <strong>Price for 2 Days</strong>
-                    </li>
-                    <li class="fs-5">
-                        <strong>BAM 199.95</strong>
-                    </li>
-                    <li class="text-muted fs-7">
-                        From X Fri - X Monday
-                    </li>
-                </ul>
-                <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Alfa Romeo 147">Reserve Now!</a></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="reserveCarButton">Reserve Car</button>
             </div>
         </div>
     </div>
-    <!-- vw golf 7-->
-    <div class="col-lg-6 col-xl-4">
-        <div class="card mb-5 mb-xl-0">
-            <div class="card-body p-5 w-h ">
-                <div class="small fw-bold">VW Golf VII</div>
-                <div class="small fw-bold text-muted fs-7">or similar hatchbacks</div>
-                <div class="mb-3">
-                    <img class="img-wh" src="https://uskuper.com/wp-content/uploads/2022/06/golf_7.jpg" alt="Hello">
-                </div>
-                <div class="lines-div"></div>
-                <ul class="list-unstyled mt-2 mb-2">
-                    <li class="">
-                        <i class="bi bi-pin-angle-fill"></i>
-                        <strong>Sarajevo international Airport</strong>
-                    </li>
-                </ul>
-                <div class="lines-div"></div>
-                <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-                    <li class="text-muted">
-                        <strong>Price for 2 Days</strong>
-                    </li>
-                    <li class="fs-5">
-                        <strong>BAM 199.95</strong>
-                    </li>
-                    <li class="text-muted fs-7">
-                        From X Fri - X Monday
-                    </li>
-                </ul>
-                <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="VW Golf VII">Reserve Now!</a></div>
-            </div>
-        </div>
-    </div>
-    <!-- Honda civic -->
-    <div class="col-lg-6 col-xl-4">
-        <div class="card mb-5 mb-xl-0">
-            <div class="card-body p-5 w-h">
-                <div class="small fw-bold">Honda Civic</div>
-                <div class="small fw-bold text-muted fs-7">or similar hatchbacks</div>
-                <div class="mb-3">
-                    <img class="img-wh" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7-DK92kpJ50N0ULytxDyrsyiVptEUI_4drw&usqp=CAU" alt="Hello">
-                </div>
-                <div class="lines-div"></div>
-                <ul class="list-unstyled mt-2 mb-2">
-                    <li class="">
-                        <i class="bi bi-pin-angle-fill"></i>
-                        <strong>Sarajevo international Airport</strong>
-                    </li>
-                </ul>
-                <div class="lines-div"></div>
-                <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-                    <li class="text-muted">
-                        <strong>Price for 2 Days</strong>
-                    </li>
-                    <li class="fs-5">
-                        <strong>BAM 199.95</strong>
-                    </li>
-                    <li class="text-muted fs-7">
-                        From X Fri - X Monday
-                    </li>
-                </ul>
-                <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Honda Civic">Reserve Now!</a></div>
-            </div>
-        </div>
-    </div>
-    </div>
 </div>
-</div>
-</section>
-<section class="bg-light py-4 border-bottom" id="sportcar">
-<div class="container px-5 my-5">
-<div class="text-center mb-5">
-    <p class="lead mb-0 text-muted">Sport cars</p>
-</div>
-<div class="row gx-5 justify-content-center card-deck">
-<!-- Sport cars-->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h">
-        <div class="small fw-bold">Audi TT</div>
-        <div class="small fw-bold text-muted fs-7">or sport cars</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://freepngimg.com/save/31679-audi/440x247" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 199.95</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Audi TT">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-<!-- Toyota supra -->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h ">
-        <div class="small fw-bold">Toyota Supra</div>
-        <div class="small fw-bold text-muted fs-7">or sport cars</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://s1.1zoom.me/b4649/637/Toyota_Supra_Heritage_Edition_2019_GR_Supra_A90_577946_2560x1440.jpg" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 199.95</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Toyota Supra">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-<!-- Porsche 911 -->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h">
-        <div class="small fw-bold">Porsche 911</div>
-        <div class="small fw-bold text-muted fs-7">or sport cars</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://edgecast-img.yahoo.net/mysterio/api/C0D6C1DEF7A746F748253FC7C242EAA5CDF6A2BC557574ABF99F13DA44087BBF/autoblog/resizefill_w660_h372;quality_80;format_webp;cc_31536000;/https://s.aolcdn.com/commerce/autodata/images/USD10PRC011A021001.jpg" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 199.95</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Porsche 911">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="bg-light py-4 border-bottom" id="sportcar">
-<div class="container px-5 my-5">
-<div class="text-center mb-5">
-    <p class="lead mb-0 text-muted">Wagons</p>
-</div>
-<div class="row gx-5 justify-content-center card-deck " id="wagons">
-<!-- Wagons-->
-<!-- Audi RS6-->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h">
-        <div class="small fw-bold">Audi RS6 Avant</div>
-        <div class="small fw-bold text-muted fs-7">or similar wagons</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://imgd.aeplcdn.com/642x336/ec/EF/B6/18994/img/m/Audi-RS6-Right-Front-Three-Quarter-52753_ol.jpg?v=201711021421&q=80" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 220.95</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Audi RS6 Avant">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-<!-- BMW M3 Wagon -->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h ">
-        <div class="small fw-bold">BMW M3 Wagon</div>
-        <div class="small fw-bold text-muted fs-7">or similar wagons</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://i.gaw.to/content/photos/52/93/529302-voici-la-bmw-m3-touring-que-nous-n-aurons-pas.jpg?460x287" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 300.00</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="BMW M3 Wagon">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-<!-- Pezo 508 Sport Wagon -->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h">
-        <div class="small fw-bold">Peugeot 508 Sportwagon</div>
-        <div class="small fw-bold text-muted fs-7">or similar wagons</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://regencycars.net/media/1130/508sw-thumb2.png" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 390.99</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Peugeot 508 Sportwagon">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="bg-light py-4 border-bottom" id="sportcar">
-<div class="container px-5 my-5">
-<div class="text-center mb-5">
-    <p class="lead mb-0 text-muted">Wagons</p>
-</div>
-<div class="row gx-5 justify-content-center card-deck " id="suvs">
-<!-- SUVs-->
-<!-- Jeep Trackhawk-->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h">
-        <div class="small fw-bold">Jeep Trackhawk</div>
-        <div class="small fw-bold text-muted fs-7">or similar SUVs</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://d2bzx2vuetkzse.cloudfront.net/fit-in/0x450/unshoppable_producs/f03dac4f-f849-4135-873a-13c1379008c4.jpeg" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 400.00</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Jeep Trackhawk">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-<!-- VW T-CROSS -->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h ">
-        <div class="small fw-bold">VW T-cross</div>
-        <div class="small fw-bold text-muted fs-7">or similar SUVs</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://www.arnoldclark.com/cdn/images/volkswagen/t-cross/pure-white.png" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 250.00</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="VW T-Cross">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-<!-- Mercedes G63 -->
-<div class="col-lg-6 col-xl-4">
-<div class="card mb-5 mb-xl-0">
-    <div class="card-body p-5 w-h">
-        <div class="small fw-bold">Mercedes-AMG G63</div>
-        <div class="small fw-bold text-muted fs-7">or similar SUVs</div>
-        <div class="mb-3">
-            <img class="img-wh" src="https://s1.1zoom.me/big0/504/Brabus_G-Class_Mercedes-Benz_G63_800_W463_2020_580581_1280x854.jpg" alt="Hello">
-        </div>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-2 mb-2">
-            <li class="">
-                <i class="bi bi-pin-angle-fill"></i>
-                <strong>Sarajevo international Airport</strong>
-            </li>
-        </ul>
-        <div class="lines-div"></div>
-        <ul class="list-unstyled mt-1 ml-auto text-end list-inline">
-            <li class="text-muted">
-                <strong>Price for 2 Days</strong>
-            </li>
-            <li class="fs-5">
-                <strong>BAM 500.00</strong>
-            </li>
-            <li class="text-muted fs-7">
-                From X Fri - X Monday
-            </li>
-        </ul>
-        <div class="d-grid pt-2"><a class="btn btn-outline-primary" data-toggle="modal" data-target="#carModal" data-car="Mercedes-AMG G63">Reserve Now!</a></div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>     
 
 
 <!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
@@ -456,9 +115,87 @@
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-                <!-- Button changes and stuff-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        if ($('#hatchback-cars').length && typeof loadCars === "function") {
+            if (typeof allLoadedCars !== "undefined") {
+                allLoadedCars.length = 0;
+            }
+            loadCars("Hatchback", "#hatchback-cars");
+            loadCars("Sport", "#sportcar-cars");
+            loadCars("Wagon", "#wagons-cars");
+            loadCars("Suv", "#suvs-cars");
+        }
+
+        $('#carModal').off('show.bs.modal').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget);
+            const carId = parseInt(button.data('car-id'));
+            const selectedCar = (typeof allLoadedCars !== "undefined") ? allLoadedCars.find(car => car.car_id == carId) : null;
+
+            const modal = $(this);
+
+            if (selectedCar) {
+                modal.find('#modalCarName').text(`${selectedCar.Brand} ${selectedCar.Model}`);
+                modal.find('#carModalLabel').text(`Reserve ${selectedCar.Brand} ${selectedCar.Model}`);
+                modal.find('#modalCarImage').attr('src', selectedCar.imgurl);
+                modal.find('#modalCarLocation').text(selectedCar.Location);
+                modal.find('#modalCarPrice').text(`BAM ${parseFloat(selectedCar.Price).toFixed(2)}`);
+                modal.find('#modalCarAvailability')
+                    .text(selectedCar.availablity_status === 1 ? 'Available' : 'Not Available')
+                    .removeClass('text-success text-danger')
+                    .addClass(selectedCar.availablity_status === 1 ? 'text-success' : 'text-danger');
+                modal.find('#reservationCarId').val(selectedCar.car_id);
+
+                modal.find('#reserveCarButton').prop('disabled', selectedCar.availablity_status !== 1);
+            } else {
+                modal.find('#modalCarName').text('Car Details Not Found');
+                modal.find('#carModalLabel').text('Error Loading Car');
+                modal.find('#modalCarImage').attr('src', '');
+                modal.find('#modalCarLocation').text('');
+                modal.find('#modalCarPrice').text('');
+                modal.find('#modalCarAvailability').text('Error').removeClass('text-success text-danger');
+                modal.find('#reserveCarButton').prop('disabled', true);
+            }
+        });
+
+        $('#reserveCarButton').off('click').on('click', function() {
+            const carId = $('#reservationCarId').val();
+            const pickUpDate = $('#pickUpDate').val();
+            const returnDate = $('#returnDate').val();
+            const customerName = $('#customerName').val();
+            const customerEmail = $('#customerEmail').val();
+
+            if (!pickUpDate || !returnDate || !customerName || !customerEmail) {
+                alert('Please fill in all reservation details.');
+                return;
+            }
+
+            const reservationData = {
+                car_id: carId,
+                pick_up_date: pickUpDate,
+                return_date: returnDate,
+                customer_name: customerName,
+                customer_email: customerEmail
+            };
+
+            $.ajax({ // TODO
+                url: Constants.PROJECT_BASE_URL + 'booking', 
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(reservationData),
+                success: function(response) {
+                    alert('Car reserved successfully!');
+                    $('#carModal').modal('hide');
+                },
+                error: function(xhr, status, error) {
+                    alert('Reservation failed. Please try again.');
+                }
+            });
+        });
+    });
+</script>
 

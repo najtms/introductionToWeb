@@ -9,6 +9,9 @@ Flight::set('bookingService', new BookingService());
  *     path="/booking",
  *     summary="Create a new booking",
  *     tags={"Booking"},
+ *  security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\RequestBody(
  *         required=true,
  *         @OA\JsonContent(
@@ -34,6 +37,7 @@ Flight::set('bookingService', new BookingService());
  */
 
 Flight::route('POST /booking', function () {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     $data = Flight::request()->data->getData();
     Flight::json(Flight::get('bookingService')->createBooking(
         $data['start_date'],
@@ -53,6 +57,9 @@ Flight::route('POST /booking', function () {
  *     path="/booking/{id}",
  *     summary="Get booking by ID",
  *     tags={"Booking"},
+ *  security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
@@ -72,6 +79,7 @@ Flight::route('POST /booking', function () {
 
 
 Flight::route('GET /booking/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     Flight::json(Flight::get('bookingService')->getBookingById($id));
 });
 
@@ -82,6 +90,9 @@ Flight::route('GET /booking/@id', function ($id) {
  *     path="/booking/{id}",
  *     summary="Update an existing booking",
  *     tags={"Booking"},
+ *  security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
@@ -113,6 +124,7 @@ Flight::route('GET /booking/@id', function ($id) {
  */
 
 Flight::route('PUT /booking/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     $data = Flight::request()->data->getData();
     Flight::json(Flight::get('bookingService')->updateBooking(
         $id,
@@ -133,6 +145,9 @@ Flight::route('PUT /booking/@id', function ($id) {
  *     path="/booking/{id}",
  *     summary="Delete a booking by ID",
  *     tags={"Booking"},
+ *  security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
@@ -152,5 +167,6 @@ Flight::route('PUT /booking/@id', function ($id) {
 
 
 Flight::route('DELETE /booking/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     Flight::json(Flight::get('bookingService')->deleteBooking($id));
 });
