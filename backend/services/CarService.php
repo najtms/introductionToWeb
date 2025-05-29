@@ -24,7 +24,9 @@ class CarService extends BaseService
         $transmissions,
         $seats,
         $cartype,
-        $imgurl
+        $imgurl,
+        $Price,
+        $Location
     ) {
         if ($Year < 1886 || $Year > date("Y")) {
             throw new Exception("Invalid car year");
@@ -50,7 +52,9 @@ class CarService extends BaseService
             $transmissions,
             $seats,
             $cartype,
-            $imgurl
+            $imgurl,
+            $Price,
+            $Location
         );
     }
 
@@ -94,5 +98,31 @@ class CarService extends BaseService
     public function getAllCarsByBrand($Brand)
     {
         return $this->dao->getAllByBrand($Brand);
+    }
+
+    public function getAllCarsByModel($Model)
+    {   
+        return $this->dao->getAllByModel($Model);
+    }
+    public function getThreeByCartype($cartype)
+    {
+        return $this->dao->getThreeByCartype($cartype);
+    }
+    public function gettAllCarsByCartype($cartype)
+    {
+        return $this->dao->getAllByCartype($cartype);
+    }
+
+    public function getThreeRandomCars()
+    {
+        return $this->dao->getThreeRandomCars();
+    }
+    public function getAllCars()
+    {
+        return $this->dao->getAll();
+    }
+    public function deleteByID($car_id)
+    {
+        return $this->dao->deleteByID($car_id);
     }
 }

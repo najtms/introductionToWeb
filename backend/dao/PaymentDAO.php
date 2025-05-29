@@ -6,7 +6,7 @@ class PaymentDAO extends BaseDAO
 {
     public function __construct()
     {
-        parent::__construct("Payment");
+        parent::__construct("Payment", "payment_id");
     }
 
     public function createPayment($date, $currency, $amount, $payment_status, $booking_id)

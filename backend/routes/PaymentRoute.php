@@ -9,6 +9,9 @@ Flight::set('paymentService', new PaymentService());
  *     path="/payment",
  *     summary="Create a new payment",
  *     tags={"Payment"},
+ *    security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\RequestBody(
  *         required=true,
  *         @OA\JsonContent(
@@ -27,6 +30,7 @@ Flight::set('paymentService', new PaymentService());
  */
 
 Flight::route('POST /payment', function () {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     $data = Flight::request()->data->getData();
     Flight::json(Flight::get('paymentService')->createPayment(
         $data['date'],
@@ -44,6 +48,9 @@ Flight::route('POST /payment', function () {
  *     path="/payment/{id}",
  *     summary="Update an existing payment",
  *     tags={"Payment"},
+ *    security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
@@ -68,6 +75,7 @@ Flight::route('POST /payment', function () {
  */
 
 Flight::route('PUT /payment/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     $data = Flight::request()->data->getData();
     Flight::json(Flight::get('paymentService')->updatePayment(
         $id,
@@ -86,6 +94,9 @@ Flight::route('PUT /payment/@id', function ($id) {
  *     path="/payment/{id}",
  *     summary="Delete a payment by ID",
  *     tags={"Payment"},
+ *    security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
@@ -100,6 +111,7 @@ Flight::route('PUT /payment/@id', function ($id) {
  */
 
 Flight::route('DELETE /payment/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     Flight::json(Flight::get('paymentService')->deletePayment($id));
 });
 
@@ -110,6 +122,9 @@ Flight::route('DELETE /payment/@id', function ($id) {
  *     path="/payment/status/{id}",
  *     summary="Update payment status",
  *     tags={"Payment"},
+ *    security={
+ *         {"bearerAuth": {}}
+ *     },
  *     @OA\Parameter(
  *         name="id",
  *         in="path",
@@ -130,6 +145,7 @@ Flight::route('DELETE /payment/@id', function ($id) {
  */
 
 Flight::route('PATCH /payment/status/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     $new_status = Flight::request()->data['new_status'];
     Flight::json(Flight::get('paymentService')->changePaymentStatus($id, $new_status));
 });

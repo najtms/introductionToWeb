@@ -6,7 +6,7 @@ class LocationDAO extends BaseDAO
 {
     public function __construct()
     {
-        parent::__construct("Location");
+        parent::__construct("Location", "location_id");
     }
 
     public function createLocation($Country, $State, $City, $Street, $Zip)
