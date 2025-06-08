@@ -52,9 +52,9 @@ class UserDAO extends BaseDAO
     }
 
     // UserEditing 
-    public function UserEdit($User_id, $FirstName, $LastName, $Phone, $DriverLicence)
+    public function UserEdit($User_id, $FirstName, $LastName, $Phone, $DriverLicence,$country,$city,$address,$zip)
     {
-        $sql = "UPDATE User SET FirstName = :FirstName, LastName = :LastName, Phone = :Phone, DriverLicense=:DriverLicence WHERE user_id = :id";
+        $sql = "UPDATE User SET FirstName = :FirstName, LastName = :LastName, Phone = :Phone, DriverLicense=:DriverLicence, country=:country, city=:city, address=:address,zip=:zip WHERE user_id = :id";
         $stmt = $this->connection->prepare($sql);
 
         $stmt->bindParam(":FirstName", $FirstName);
@@ -62,6 +62,10 @@ class UserDAO extends BaseDAO
         $stmt->bindParam(":Phone", $Phone);
         $stmt->bindParam(":DriverLicence", $DriverLicence);
         $stmt->bindParam(":id", $User_id);
+        $stmt->bindParam(":country", $country);
+        $stmt->bindParam(":city", $city);
+        $stmt->bindParam(":address", $address);
+        $stmt->bindParam(":zip", $zip);
 
         return $stmt->execute();
     }
@@ -74,10 +78,17 @@ class UserDAO extends BaseDAO
         $stmt->BindParam(":email", $email);
         $stmt->execute();
     }
+    public function DeleteById($id)
+    {
+        $sql = "DELETE FROM User WHERE user_id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->BindParam(":id", $id);
+        $stmt->execute();
+    }
 
     public function get_user_by_email_user($email)
     {
-        $sql = "SELECT email,FirstName,LastName,Phone,DriverLicense  FROM User WHERE email = :email";
+        $sql = "SELECT email,FirstName,LastName,Phone,DriverLicense,country,city,address,zip   FROM User WHERE email = :email";
         $stmt = $this->connection->prepare($sql);
         $stmt->BindParam(":email", $email);
         $stmt->execute();
@@ -85,10 +96,20 @@ class UserDAO extends BaseDAO
     }
     public function get_user_by_id_user($user_id)
     {
-        $sql = "SELECT email,FirstName,LastName,Phone,DriverLicense  FROM User WHERE user_id = :user_id";
+        $sql = "SELECT email,FirstName,LastName,Phone,DriverLicense,country,city,address,zip  FROM User WHERE user_id = :user_id";
         $stmt = $this->connection->prepare($sql);
         $stmt->BindParam(":user_id", $user_id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getAllADMIN()
+    {
+        $sql = "SELECT * FROM User";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }

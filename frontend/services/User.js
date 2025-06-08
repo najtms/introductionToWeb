@@ -4,6 +4,7 @@ var UserService = {
       if (token && token !== undefined) {
         window.location.replace("#account");
       }
+      // Location where login-form aka ID of login-form where its all needed and takes all information from below and when the user presses submit it sends to validate
       $("#login-form").validate({
         submitHandler: function (form) {
           var entity = Object.fromEntries(new FormData(form).entries());
@@ -13,7 +14,7 @@ var UserService = {
     },
     login: function (entity) {
       $.ajax({
-        url: Constants.PROJECT_BASE_URL + "auth/login",
+        url: Constants.PROJECT_BASE_URL + "auth/login", // API Route
         type: "POST",
         data: JSON.stringify(entity),
         contentType: "application/json",
@@ -57,7 +58,8 @@ var UserService = {
         window.location.replace("#login");
         return;
       }
-      $.ajax({
+      // Return the jqXHR promise so .then() works in account.html
+      return $.ajax({
         url: Constants.PROJECT_BASE_URL + "user/", 
         beforeSend: function(xhr) {
           xhr.setRequestHeader("Authorization", "Bearer " + token);
@@ -78,11 +80,18 @@ var UserService = {
           }
           $("#profile-role").text(roleText);
 
-        
           $("#profile-firstName").text(userProfile.FirstName || 'N/A');
           $("#profile-lastName").text(userProfile.LastName || 'N/A');
-          $("#profile-email").text(userProfile.email || 'N/A');
+          $("#profile-email").text(userProfile.Email || 'N/A');
           $("#profile-phone").text(userProfile.Phone || 'N/A');
+          $("#profile-address").text(userProfile.address || 'N/A');
+          $("#profile-City").text(userProfile.city || 'N/A');
+          $("#profile-country").text(userProfile.country || 'N/A');
+          $("#profile-zip").text(userProfile.zip || 'N/A');
+          $("#profile-driverLicence")
+            .text(userProfile.DriverLicence || userProfile.DriverLicense || 'N/A')
+            .removeClass('revealed')
+            .addClass('blurred');
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
           console.error("Error fetching profile:", XMLHttpRequest.responseText);
@@ -95,6 +104,45 @@ var UserService = {
       });
     },
 
+    updateProfile: function (entity, callback) {
+        const token = localStorage.getItem("user_token");
+        if (!token) {
+            toastr.error("You are not logged in. Please log in to update your profile.");
+            window.location.replace("#login");
+            return;
+        }
+        try {
+            const user = Utils.parseJwt(token).user;
+            entity.User_id = user.user_id ;
+            if (!entity.User_id) {
+                toastr.error("User_id not found in token.");
+                if (callback) callback(false);
+                return;
+            }
+        } catch (e) {
+            toastr.error("Invalid user token.");
+            if (callback) callback(false);
+            return;
+        }
+        $.ajax({
+            url: Constants.PROJECT_BASE_URL + "user/edit",
+            type: "PUT",
+            data: JSON.stringify(entity),
+            contentType: "application/json",
+            dataType: "json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            },
+            success: function (result) {
+                toastr.success("Profile updated successfully!");
+                if (callback) callback(true);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                toastr.error(XMLHttpRequest?.responseText ?  XMLHttpRequest.responseText : 'Error updating profile');
+                if (callback) callback(false);
+            },
+        });
+    },
   
 generateMenuItems: function () {
   const token = localStorage.getItem("user_token");
@@ -159,6 +207,6 @@ generateMenuItems: function () {
     `;
     navContainer.appendChild(loginItem);
   }
-}
+},
 
   };

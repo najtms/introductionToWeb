@@ -7,6 +7,63 @@ use Firebase\JWT\Key;
 
 
 Flight::set('user_service', new UserService());
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @OA\Schema(
+ *   schema="User",
+ *   type="object",
+ *   required={"email", "FirstName", "LastName"},
+ *   @OA\Property(property="user_id", type="integer", example=1),
+ *   @OA\Property(property="email", type="string", example="example@example.com"),
+ *   @OA\Property(property="FirstName", type="string", example="John"),
+ *   @OA\Property(property="LastName", type="string", example="Doe"),
+ *   @OA\Property(property="role", type="string", example="USER"),
+ *   @OA\Property(property="Phone", type="string", example="+123456789"),
+ *   @OA\Property(property="country", type="string", example="Bosnia and Herzegovina"),
+ *   @OA\Property(property="city", type="string", example="Sarajevo"),
+ *   @OA\Property(property="address", type="string", example="Some Street 1"),
+ *   @OA\Property(property="zip", type="string", example="71000")
+ * )
+ */
+
+/**
+ * @OA\Get(
+ *     path="/user/all",
+ *     summary="Get all users",
+ *     tags={"User"},
+ *     security={{"bearerAuth": {}}},
+ *     @OA\Response(
+ *         response=200,
+ *         description="List of users",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/User")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=403,
+ *         description="Unauthorized"
+ *     )
+ * )
+ */
+
+Flight::route('GET /user/all', function () {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+    try {
+        // Call the new getAllADMIN method to avoid any email validation
+        $result = Flight::get('user_service')->getAllADMIN();
+        Flight::json($result);
+    } catch (Exception $e) {
+        Flight::json(["error" => $e->getMessage()], 400);
+    }
+});
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -164,12 +221,17 @@ Flight::route('PUT /user/edit', function () {
     Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
     $data = Flight::request()->data->getData();
     try {
+        // Pass all 9 arguments to UserEdit
         $result = Flight::get('user_service')->UserEdit(
             $data['User_id'],
             $data['FirstName'],
             $data['LastName'],
             $data['Phone'],
-            $data['DriverLicence']
+            $data['DriverLicence'],
+            $data['country'],
+            $data['city'],
+            $data['address'],
+            $data['zip']
         );
         Flight::json(["message" => "User updated", "result" => $result]);
     } catch (Exception $e) {
@@ -270,3 +332,38 @@ Flight::route('GET /user', function () {
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @OA\Delete(
+ *     path="/user/{id}",
+ *     summary="Delete a user by ID",
+ *     tags={"User"},
+ *     security={{"bearerAuth": {}}},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         @OA\Schema(type="integer", example=1)
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="User deleted"
+ *     ),
+ *     @OA\Response(
+ *         response=400,
+ *         description="Error deleting user"
+ *     )
+ * )
+ */
+
+Flight::route('DELETE /user/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+    try {
+        $result = Flight::get('user_service')->DeleteById($id);
+        Flight::json(["message" => "User deleted", "result" => $result]);
+    } catch (Exception $e) {
+        Flight::json(["error" => $e->getMessage()], 400);
+    }
+});
