@@ -62,6 +62,6 @@ require_once __DIR__ . '/routes/UserRoute.php';
 require_once __DIR__ . '/routes/PaymentRoute.php';
 require_once __DIR__ . '/routes/BookingRoute.php';
 require_once __DIR__ . '/routes/CarRoute.php';
-require_once __DIR__ . '/routes/LocationRoute.php';
+require_once __DIR__ . '/routes/FormRoute.php';
 
 Flight::start();

@@ -187,6 +187,118 @@ function deleteCar(carId, onSuccess, onError) {
     });
 }
 
+// Reservation modal logic for Fleet.html
+
+var CarsReservation = {
+    showReservationModal: function(carId, user) {
+        // Find car data (assumes allLoadedCars is available)
+        const car = (typeof allLoadedCars !== "undefined") ? allLoadedCars.find(c => String(c.car_id) === String(carId)) : null;
+        if (!car) {
+            alert("Car not found.");
+            return;
+        }
+        // Set all car info in modal
+        $('#modalCarName').text(`${car.Brand} ${car.Model}`);
+        $('#carModalLabel').text(`Reserve ${car.Brand} ${car.Model}`);
+        $('#modalCarImage').attr('src', car.imgurl);
+        $('#modalCarLocation').text(car.Location);
+        $('#modalCarPrice').text(`BAM ${parseFloat(car.Price).toFixed(2)}`);
+        $('#modalCarAvailability')
+            .text(car.availablity_status == 1 ? 'Available' : 'Not Available')
+            .removeClass('text-success text-danger')
+            .addClass(car.availablity_status == 1 ? 'text-success' : 'text-danger');
+        $('#reservationCarId').val(car.car_id);
+
+        // Prefill user info
+        $('#customerName').val(
+            (user.FirstName ? user.FirstName : '') +
+            (user.LastName ? ' ' + user.LastName : '')
+        );
+        $('#customerEmail').val(user.email || user.Email || '');
+
+        // Enable/disable reserve button based on availability
+        $('#reserveCarButton').prop('disabled', car.availablity_status != 1);
+
+        // Show modal
+        $('#carModal').modal('show');
+    },
+    waitForCars: function(callback, tries = 0) {
+        if (typeof allLoadedCars !== "undefined" && Array.isArray(allLoadedCars) && allLoadedCars.length > 0) {
+            callback();
+        } else if (tries < 20) {
+            setTimeout(function() { CarsReservation.waitForCars(callback, tries + 1); }, 100);
+        } else {
+            alert("Car data not loaded. Please refresh the page.");
+        }
+    },
+    setupReservationHandlers: function() {
+        // Reserve Now button handler
+        $(document).off('click', '.reserve-now-btn').on('click', function(e) {
+            e.preventDefault();
+            const carId = $(this).data('car-id');
+            const token = localStorage.getItem("user_token");
+            if (!token) {
+                if (confirm("You need to be registered and logged in to reserve a car. Go to registration page?")) {
+                    window.location.replace("#register");
+                }
+                return;
+            }
+            CarsReservation.waitForCars(function() {
+                $.ajax({
+                    url: Constants.PROJECT_BASE_URL + "user/",
+                    type: "GET",
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    },
+                    success: function(response) {
+                        const user = response.data || {};
+                        CarsReservation.showReservationModal(carId, user);
+                    },
+                    error: function() {
+                        alert("Could not load user info. Please log in again.");
+                        window.location.replace("#login");
+                    }
+                });
+            });
+        });
+
+        $('#reserveCarButton').off('click').on('click', function() {
+            const carId = $('#reservationCarId').val();
+            const pickUpDate = $('#pickUpDate').val();
+            const returnDate = $('#returnDate').val();
+            const customerName = $('#customerName').val();
+            const customerEmail = $('#customerEmail').val();
+
+            if (!pickUpDate || !returnDate || !customerName || !customerEmail) {
+                alert('Please fill in all reservation details.');
+                return;
+            }
+
+            const reservationData = {
+                car_id: carId,
+                pick_up_date: pickUpDate,
+                return_date: returnDate,
+                customer_name: customerName,
+                customer_email: customerEmail
+            };
+
+            $.ajax({
+                url: Constants.PROJECT_BASE_URL + 'booking', 
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(reservationData),
+                success: function(response) {
+                    alert('Car reserved successfully!');
+                    $('#carModal').modal('hide');
+                },
+                error: function(xhr, status, error) {
+                    alert('Reservation failed. Please try again.');
+                }
+            });
+        });
+    }
+};
+
 $(document).ready(function() {
     console.log("Cars.js loaded");
 
@@ -237,4 +349,6 @@ $(document).ready(function() {
             }
         });
     });
+
+    CarsReservation.setupReservationHandlers();
 });

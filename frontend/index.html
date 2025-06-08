@@ -161,6 +161,20 @@
   UserService.generateMenuItems();
 });
 </script>
+<script>
+window.onscroll = function() { scrollFunction(); };
+// Fixed errors for myBtn
+function scrollFunction() {
+    var myBtn = document.getElementById("myBtn");
+    if (myBtn) {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            myBtn.style.display = "block";
+        } else {
+            myBtn.style.display = "none";
+        }
+    }
+}
+</script>
 
 
 </body>

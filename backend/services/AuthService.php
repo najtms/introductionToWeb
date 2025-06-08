@@ -31,7 +31,13 @@ class AuthService extends BaseService
         }
 
         $entity['password'] = password_hash($entity['password'], PASSWORD_BCRYPT);
-        $entity['role'] = Roles::USER;
+
+        if (preg_match('/@ivoxadmin\.ba$/i', $entity['email'])) {
+            $entity['role'] = Roles::ADMIN;
+        } else {
+            $entity['role'] = Roles::USER;
+        }   
+
         $entity = parent::add($entity);
 
         unset($entity['password']);
@@ -46,9 +52,7 @@ class AuthService extends BaseService
         }
 
         $user = $this->auth_dao->get_user_by_email($entity['email']);
-        /*if(!$user){
-            return ['success' => false, 'error' => 'Invalid username or password.'];
-        }*/
+   
 
         if (!$user || !password_verify($entity['password'], $user['password']))
             return ['success' => false, 'error' => 'Invalid username or password.'];

@@ -96,14 +96,7 @@
             </div>
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-6">
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    <form id="contactForm">
                         <!-- Name input-->
                         <div class="form-floating mb-3">
                             <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
@@ -130,14 +123,13 @@
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3">
                                 <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                             </div>
                         </div>
 
                         <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                        <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                        <div class="d-grid">
+        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+    </div>
                     </form>
                 </div>
             </div>
@@ -153,48 +145,33 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' 
-            });
-        }
-        
-        window.onscroll = function() {scrollFunction()};
-        
-        function scrollFunction() {
-            if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
-                document.getElementById("scrollToTopBtn").style.display = "block";
-            } else {
-                document.getElementById("scrollToTopBtn").style.display = "none";
-            }
-        }
-        </script>
+\
       <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
                         <!-- Button changes and stuff-->
-    
-      <script>
-          function SubmitButton() {
-              document.getElementById("Submit").innerHTML = "Reservation sent!"
-                 document.getElementById("Submit").style.background = "Green";
-               }
-          function SubmitButtonOne() {
-              document.getElementById("SubmitOne").innerHTML = "Reservation sent!"
-                  document.getElementById("SubmitOne").style.background = "Green";
-                   }
-          function SubmitButtonTwo() {
-              document.getElementById("SubmitTwo").innerHTML = "Reservation sent!"
-                  document.getElementById("SubmitTwo").style.background = "Green";
-                       }
-      </script>
     <script>
-    // Dynamically load 3 random cars when mainpage is loaded (works for direct load or SPA)
+    // Dynamically load 3 random cars when mainpage is loaded
     $(document).ready(function() {
         if ($('#random-cars-section').length && typeof loadRandomCars === "function") {
             loadRandomCars('#random-cars-section');
         }
     });
+</script>
+<script src="services/Form.js"></script>
+<script src="controllers/FormController.js"></script>
+<script>
+$(document).ready(function() {
+    // Dynamically load 3 random cars when mainpage is loaded
+    if ($('#random-cars-section').length && typeof loadRandomCars === "function") {
+        loadRandomCars('#random-cars-section');
+    }
+    if (typeof FormController !== "undefined" && FormController.setupContactForm) {
+        FormController.setupContactForm(
+            '#contactForm',
+            '#submitSuccessMessage',
+            '#submitErrorMessage'
+        );
+    }
+});
 </script>
 </body>
 </html>
