@@ -4,174 +4,166 @@
     <!-- Add New Car (Collapsible) -->
     <div class="card mb-4">
         <div class="card-header bg-primary text-white">
-            <a class="text-white text-decoration-none" href="#" onclick="event.preventDefault(); $('#addCarCollapse').collapse('toggle'); return false;">
-                Add New Car <span class="ms-2"><i class="bi bi-chevron-down"></i></span>
-            </a>
+            Add New Car
         </div>
-        <div class="collapse" id="addCarCollapse">
-            <div class="card-body">
-                <form id="add-car-form">
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label>Brand</label>
-                            <input type="text" class="form-control" name="Brand" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Model</label>
-                            <input type="text" class="form-control" name="Model" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Year</label>
-                            <input type="number" class="form-control" name="Year" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>License Plate</label>
-                            <input type="text" class="form-control" name="License_plate" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Availability Status</label>
-                            <select class="form-control" name="availablity_status" required>
-                                <option value="1">Available</option>
-                                <option value="0">Not Available</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Engine</label>
-                            <input type="text" class="form-control" name="engine" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Kilometers</label>
-                            <input type="number" class="form-control" name="kilometers" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Fuel Type</label>
-                            <select class="form-control" name="fueltype" required>
-                                <option>Petrol</option>
-                                <option>Diesel</option>
-                                <option>Electric</option>
-                                <option>Hybrid</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Transmission</label>
-                            <select class="form-control" name="transmissions" required>
-                                <option>Manual</option>
-                                <option>Automatic</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Seats</label>
-                            <input type="number" class="form-control" name="seats" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Car Type</label>
-                            <input type="text" class="form-control" name="cartype" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Image URL</label>
-                            <input type="text" class="form-control" name="imgurl" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Price</label>
-                            <input type="number" class="form-control" name="Price" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Location</label>
-                            <input type="text" class="form-control" name="Location" required>
-                        </div>
+        <div class="card-body">
+            <form id="add-car-form">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label>Brand</label>
+                        <input type="text" class="form-control" name="Brand" required>
                     </div>
-                    <button type="submit" class="btn btn-success">Add Car</button>
-                </form>
-            </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Model</label>
+                        <input type="text" class="form-control" name="Model" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Year</label>
+                        <input type="number" class="form-control" name="Year" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>License Plate</label>
+                        <input type="text" class="form-control" name="License_plate" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Availability Status</label>
+                        <select class="form-control" name="availablity_status" required>
+                            <option value="1">Available</option>
+                            <option value="0">Not Available</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Engine</label>
+                        <input type="text" class="form-control" name="engine" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Kilometers</label>
+                        <input type="number" class="form-control" name="kilometers" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Fuel Type</label>
+                        <select class="form-control" name="fueltype" required>
+                            <option>Petrol</option>
+                            <option>Diesel</option>
+                            <option>Electric</option>
+                            <option>Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Transmission</label>
+                        <select class="form-control" name="transmissions" required>
+                            <option>Manual</option>
+                            <option>Automatic</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Seats</label>
+                        <input type="number" class="form-control" name="seats" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Car Type</label>
+                        <input type="text" class="form-control" name="cartype" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Image URL</label>
+                        <input type="text" class="form-control" name="imgurl" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Price</label>
+                        <input type="number" class="form-control" name="Price" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Location</label>
+                        <input type="text" class="form-control" name="Location" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Add Car</button>
+            </form>
         </div>
     </div>
 
     <!-- Update Car (Collapsible) -->
     <div class="card mb-4">
         <div class="card-header bg-warning text-dark">
-            <a class="text-dark text-decoration-none" href="#" onclick="event.preventDefault(); $('#updateCarCollapse').collapse('toggle'); return false;">
-                Update Car <span class="ms-2"><i class="bi bi-chevron-down"></i></span>
-            </a>
+            Update Car
         </div>
-        <div class="collapse" id="updateCarCollapse">
-            <div class="card-body">
-                <form id="update-car-form">
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label>Car ID</label>
-                            <input type="number" class="form-control" name="car_id" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Brand</label>
-                            <input type="text" class="form-control" name="Brand" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Model</label>
-                            <input type="text" class="form-control" name="Model" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Year</label>
-                            <input type="number" class="form-control" name="Year" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>License Plate</label>
-                            <input type="text" class="form-control" name="License_plate" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Availability Status</label>
-                            <select class="form-control" name="availablity_status" required>
-                                <option value="1">Available</option>
-                                <option value="0">Not Available</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Engine</label>
-                            <input type="text" class="form-control" name="engine" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Kilometers</label>
-                            <input type="number" class="form-control" name="kilometers" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Fuel Type</label>
-                            <select class="form-control" name="fueltype" required>
-                                <option>Petrol</option>
-                                <option>Diesel</option>
-                                <option>Electric</option>
-                                <option>Hybrid</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Transmission</label>
-                            <select class="form-control" name="transmissions" required>
-                                <option>Manual</option>
-                                <option>Automatic</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Seats</label>
-                            <input type="number" class="form-control" name="seats" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Car Type</label>
-                            <input type="text" class="form-control" name="cartype" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Image URL</label>
-                            <input type="text" class="form-control" name="imgurl" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Price</label>
-                            <input type="number" class="form-control" name="Price" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Location</label>
-                            <input type="text" class="form-control" name="Location" required>
-                        </div>
+        <div class="card-body">
+            <form id="update-car-form">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label>Car ID</label>
+                        <input type="number" class="form-control" name="car_id" required>
                     </div>
-                    <button type="submit" class="btn btn-warning">Update Car</button>
-                </form>
-            </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Brand</label>
+                        <input type="text" class="form-control" name="Brand" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Model</label>
+                        <input type="text" class="form-control" name="Model" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Year</label>
+                        <input type="number" class="form-control" name="Year" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>License Plate</label>
+                        <input type="text" class="form-control" name="License_plate" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Availability Status</label>
+                        <select class="form-control" name="availablity_status" required>
+                            <option value="1">Available</option>
+                            <option value="0">Not Available</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Engine</label>
+                        <input type="text" class="form-control" name="engine" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Kilometers</label>
+                        <input type="number" class="form-control" name="kilometers" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Fuel Type</label>
+                        <select class="form-control" name="fueltype" required>
+                            <option>Petrol</option>
+                            <option>Diesel</option>
+                            <option>Electric</option>
+                            <option>Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Transmission</label>
+                        <select class="form-control" name="transmissions" required>
+                            <option>Manual</option>
+                            <option>Automatic</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Seats</label>
+                        <input type="number" class="form-control" name="seats" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Car Type</label>
+                        <input type="text" class="form-control" name="cartype" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Image URL</label>
+                        <input type="text" class="form-control" name="imgurl" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Price</label>
+                        <input type="number" class="form-control" name="Price" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Location</label>
+                        <input type="text" class="form-control" name="Location" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-warning">Update Car</button>
+            </form>
         </div>
     </div>
 
@@ -288,6 +280,85 @@
         </div>
       </div>
     </div>
+    <h2 class="mb-4 text-center">Admin Dashboard - User Management</h2>
+
+    <!-- Users Management Section -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            Users Management
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered" id="users-table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Email</th>
+                        <th>Full Name</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Users will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Forms Management Tabs -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            Forms Management
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="formsTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pending-forms-tab" data-bs-toggle="tab" data-bs-target="#pending-forms" type="button" role="tab" aria-controls="pending-forms" aria-selected="true">Pending Forms</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="closed-forms-tab" data-bs-toggle="tab" data-bs-target="#closed-forms" type="button" role="tab" aria-controls="closed-forms" aria-selected="false">Closed Forms</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="formsTabContent">
+                <div class="tab-pane fade show active" id="pending-forms" role="tabpanel" aria-labelledby="pending-forms-tab">
+                    <table class="table table-bordered mt-3" id="pending-forms-table">
+                        <thead>
+                            <tr>
+                                <th>Form ID</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Pending forms will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="closed-forms" role="tabpanel" aria-labelledby="closed-forms-tab">
+                    <table class="table table-bordered mt-3" id="closed-forms-table">
+                        <thead>
+                            <tr>
+                                <th>Form ID</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Closed forms will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -312,6 +383,184 @@ $(document).ready(function() {
             }
         }, function(errorMsg) {
             alert("Failed to delete car: " + errorMsg);
+        });
+    });
+});
+
+function fetchUsers() {
+    $.ajax({
+        url: Constants.PROJECT_BASE_URL + "user/all",
+        type: "GET",
+        contentType: "application/json",
+        dataType: "json",
+        beforeSend: function(xhr) {
+            const token = localStorage.getItem("user_token");
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
+        success: function(users) {
+            var tbody = $("#users-table tbody");
+            tbody.empty();
+            users.forEach(function(user) {
+                tbody.append(`
+                    <tr>
+                        <td>${user.user_id || user.User_id || ""}</td>
+                        <td>${user.Email || ""}</td>
+                        <td>${(user.FirstName || "") + " " + (user.LastName || "")}</td>
+                        <td>${user.role || ""}</td>
+                        <td>${user.Phone || ""}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm delete-user-btn" data-user-id="${user.user_id || user.User_id}">Delete</button>
+                        </td>
+                    </tr>
+                `);
+            });
+        },
+        error: function(xhr) {
+            alert("Failed to load users.");
+        }
+    });
+}
+
+$(document).ready(function() {
+    fetchUsers();
+
+    $(document).off("click", ".delete-user-btn");
+    $(document).on("click", ".delete-user-btn", function(e) {
+        e.preventDefault();
+        const userId = $(this).data("user-id");
+        if (!confirm("Are you sure you want to delete user with ID " + userId + "?")) {
+            return;
+        }
+        $.ajax({
+            url: Constants.PROJECT_BASE_URL + "user/" + userId,
+            type: "DELETE",
+            beforeSend: function(xhr) {
+                const token = localStorage.getItem("user_token");
+                if (token) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                }
+            },
+            success: function() {
+                alert("User deleted successfully!");
+                fetchUsers();
+            },
+            error: function(xhr) {
+                alert("Failed to delete user.");
+            }
+        });
+    });
+});
+
+function fetchForms() {
+    $.ajax({
+        url: Constants.PROJECT_BASE_URL + "form/all",
+        type: "GET",
+        contentType: "application/json",
+        dataType: "json",
+        beforeSend: function(xhr) {
+            const token = localStorage.getItem("user_token");
+            if (token) {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+        },
+        success: function(forms) {
+            var pendingTbody = $("#pending-forms-table tbody");
+            var closedTbody = $("#closed-forms-table tbody");
+            pendingTbody.empty();
+            closedTbody.empty();
+            forms.forEach(function(form) {
+                if (form.Status && form.Status.toLowerCase() === "pending") {
+                    pendingTbody.append(`
+                        <tr>
+                            <td>${form.form_id}</td>
+                            <td>${form.FullName}</td>
+                            <td>${form.email}</td>
+                            <td>${form.phone}</td>
+                            <td>${form.Message}</td>
+                            <td>${form.Status}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm change-status-btn" data-form-id="${form.form_id}">Mark as Closed</button>
+                            </td>
+                        </tr>
+                    `);
+                } else if (form.Status && form.Status.toLowerCase() === "closed") {
+                    closedTbody.append(`
+                        <tr>
+                            <td>${form.form_id}</td>
+                            <td>${form.FullName}</td>
+                            <td>${form.email}</td>
+                            <td>${form.phone}</td>
+                            <td>${form.Message}</td>
+                            <td>${form.Status}</td>
+                        </tr>
+                    `);
+                }
+            });
+        },
+        error: function(xhr) {
+            alert("Failed to load forms.");
+        }
+    });
+}
+
+$(document).ready(function() {
+    // ...existing code...
+    fetchUsers();
+    fetchForms();
+
+    $(document).off("click", ".delete-user-btn");
+    $(document).on("click", ".delete-user-btn", function(e) {
+        e.preventDefault();
+        const userId = $(this).data("user-id");
+        if (!confirm("Are you sure you want to delete user with ID " + userId + "?")) {
+            return;
+        }
+        $.ajax({
+            url: Constants.PROJECT_BASE_URL + "user/" + userId,
+            type: "DELETE",
+            beforeSend: function(xhr) {
+                const token = localStorage.getItem("user_token");
+                if (token) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                }
+            },
+            success: function() {
+                alert("User deleted successfully!");
+                fetchUsers();
+            },
+            error: function(xhr) {
+                alert("Failed to delete user.");
+            }
+        });
+    });
+
+    // Change status of form to closed
+    $(document).off("click", ".change-status-btn");
+    $(document).on("click", ".change-status-btn", function(e) {
+        e.preventDefault();
+        const formId = $(this).data("form-id");
+        if (!confirm("Mark this form as closed?")) {
+            return;
+        }
+        $.ajax({
+            url: Constants.PROJECT_BASE_URL + "form/status/" + formId,
+            type: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify({ Status: "closed" }),
+            beforeSend: function(xhr) {
+                const token = localStorage.getItem("user_token");
+                if (token) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                }
+            },
+            success: function() {
+                fetchForms();
+            },
+            error: function(xhr) {
+                alert("Failed to update form status.");
+            }
         });
     });
 });

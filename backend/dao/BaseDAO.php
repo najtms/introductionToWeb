@@ -11,7 +11,6 @@ class BaseDAO
     {
         $this->table_name = $table_name;
         $this->primary_key = $primary_key;
-        $this->table_name = $table_name;
         try {
             $this->connection = new PDO(
                 "mysql:host=" . Config::DB_HOST() . ";dbname=" . Config::DB_NAME() . ";port=" . Config::DB_PORT(),
@@ -29,22 +28,24 @@ class BaseDAO
 
     public function add($entity)
     {
+        // Use prepared statements and filter input
+        $filtered = $this->sanitizeArray($entity);
         $query = "INSERT INTO " . $this->table_name . " (";
-        foreach ($entity as $column => $value) {
+        foreach ($filtered as $column => $value) {
             $query .= $column . ', ';
         }
         $query = substr($query, 0, -2);
         $query .= ") VALUES (";
-        foreach ($entity as $column => $value) {
+        foreach ($filtered as $column => $value) {
             $query .= ":" . $column . ', ';
         }
         $query = substr($query, 0, -2);
         $query .= ")";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->execute($entity);
-        $entity['id'] = $this->connection->lastInsertId();
-        return $entity;
+        $stmt->execute($filtered);
+        $filtered['id'] = $this->connection->lastInsertId();
+        return $filtered;
     }
 
     public function getAll()
@@ -64,13 +65,14 @@ class BaseDAO
 
     public function insert($data)
     {
-        $columns = implode(", ", array_keys($data));
-        $placeholders = ":" . implode(", :", array_keys($data));
+        $filtered = $this->sanitizeArray($data);
+        $columns = implode(", ", array_keys($filtered));
+        $placeholders = ":" . implode(", :", array_keys($filtered));
         $sql = "INSERT INTO " . $this->table_name . " ($columns) VALUES ($placeholders)";
 
         $stmt = $this->connection->prepare($sql);
 
-        foreach ($data as $key => &$value) {
+        foreach ($filtered as $key => &$value) {
             $stmt->bindParam(":$key", $value);
         }
 
@@ -79,16 +81,17 @@ class BaseDAO
 
     public function update($id, $data)
     {
+        $filtered = $this->sanitizeArray($data);
         $fields = "";
-        foreach ($data as $key => $value) {
+        foreach ($filtered as $key => $value) {
             $fields .= "$key = :$key, ";
         }
         $fields = rtrim($fields, ", ");
         $sql = "UPDATE " . $this->table_name . " SET $fields WHERE " . $this->primary_key . " = :id";
 
         $stmt = $this->connection->prepare($sql);
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $filtered['id'] = $id;
+        return $stmt->execute($filtered);
     }
 
     public function delete($id)
@@ -119,5 +122,18 @@ class BaseDAO
     {
         $results = $this->query($query, $params);
         return reset($results);
+    }
+
+    protected function sanitizeArray($arr)
+    {
+        $clean = [];
+        foreach ($arr as $k => $v) {
+            if (is_string($v)) {
+                $v = strip_tags($v);
+                $v = htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
+            }
+            $clean[$k] = $v;
+        }
+        return $clean;
     }
 }

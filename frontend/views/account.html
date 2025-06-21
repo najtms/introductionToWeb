@@ -14,7 +14,7 @@
                     </div>
                  </div>
             </div>
-        <div class="col-md-8">
+        <div class="col-md-8 user-display-profile" id="user-display-profile">
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">
@@ -51,19 +51,40 @@
                         <div class="col-sm-3">
                             <h6 class="mb-0">Country</h6>
                         </div>
-                        <div class="col-sm-9 text-secondary">Bosnia and Herzegovina </div>
+                        <div class="col-sm-9 text-secondary" id="profile-country"></div>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-sm-3">
                         <h6 class="mb-0">Address</h6>
                         </div>
-                     <div class="col-sm-9  text-secondary"> Sarajevo, Francuske revolucije bb, Ilidža 71210  </div>
+                     <div class="col-sm-9  text-secondary" id="profile-address"></div>
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-sm-12">
-                            <a class="btn btn-info " target="__blank" href="#reservation">Edit</a>
+                        <div class="col-sm-3">
+                        <h6 class="mb-0">City</h6>
+                        </div>
+                     <div class="col-sm-9  text-secondary" id="profile-City"></div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <h6 class="mb-0">Zip</h6>
+                        </div>
+                     <div class="col-sm-9  text-secondary" id="profile-zip"></div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <h6 class="mb-0">Driver Licence</h6>
+                        </div>
+                     <div class="col-sm-9  text-secondary" id="profile-driverLicence"></div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12 d-flex gap-2">
+                            <a class="btn btn-info" href="javascript:void(0);" id="edit-btn" data-bs-toggle="modal" data-bs-target="#editModal">Edit Personal Information</a>
                         </div>
                     </div>
                 </div>
@@ -100,28 +121,72 @@
     </div>
 </div>
 
-<script>
- $(document).ready(function () {
-    UserService.getPorfile()
-        .then((response) => {
-            const user = response.data;
-            // Set full name in the profile card
-            $('#profile-fullName').text(user.FirstName + ' ' + user.LastName);
-            // Set role in the profile card
-            let roleText = "Customer";
-            if (user.role && user.role.toLowerCase() === "admin") {
-                roleText = "ADMIN";
-            }
-            $('#profile-role').text(roleText);
+<!-- Edit Modal (restore this block) -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="edit-user-form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="edit-firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="edit-firstName" name="FirstName" required>
+                <div class="form-text" id="preview-firstName"></div>
+            </div>
+            <div class="mb-3">
+                <label for="edit-lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="edit-lastName" name="LastName" required>
+                <div class="form-text" id="preview-lastName"></div>
+            </div>
+            <div class="mb-3">
+                <label for="edit-phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="edit-phone" name="Phone" required>
+                <div class="form-text" id="preview-phone"></div>
+            </div>
+            <div class="mb-3">
+                <label for="edit-driverLicence" class="form-label">Driver Licence</label>
+                <input type="text" class="form-control" id="edit-driverLicence" name="DriverLicence">
+                <div class="form-text" id="preview-driverLicence"></div>
+            </div>
+            <div class="mb-3">
+                <label for="edit-country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="edit-country" name="Country">
+                <div class="form-text" id="preview-country"></div>
+            </div>
+            <div class="mb-3">
+                <label for="edit-city" class="form-label">City</label>
+                <input type="text" class="form-control" id="edit-city" name="City">
+                <div class="form-text" id="preview-city"></div>
+            </div>
+            <div class="mb-3">
+                <label for="edit-address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="edit-address" name="Address">
+                <div class="form-text" id="preview-address"></div>
+            </div>
+            <div class="mb-3">
+                <label for="edit-zip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="edit-zip" name="Zip">
+                <div class="form-text" id="preview-zip"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-            // Set other fields
-            $('#profile-firstName').text(user.FirstName);
-            $('#profile-lastName').text(user.LastName);
-            $('#profile-email').text(user.email);
-            $('#profile-phone').text(user.Phone);
-        })
-        .catch((error) => {
-            console.error('Error fetching user profile:', error);
-        });
- })
+<script src="services/User.js"></script>
+<script src="controllers/UserController.js"></script>
+<script>
+$(document).ready(function () {
+    if (typeof UserController !== "undefined" && UserController.setupProfilePage) {
+        UserController.setupProfilePage();
+    }
+});
 </script>

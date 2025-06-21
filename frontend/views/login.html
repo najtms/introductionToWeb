@@ -98,7 +98,7 @@
 
         <div class="form-outline mb-4">
             <label class="pb-1"> Email</label>
-          <input type="email" id="#" class="form-control" placeholder="Please enter Email"/>
+          <input type="email" id="#" class="form-control" placeholder="Please enter Email"/> 
         </div>
         <div>
           <p class="text-muted">
@@ -124,15 +124,8 @@
     UserService.init();
 
     $('#login-form').on('submit', function(e) {
-      e.preventDefault();
-      UserService.login();
+      e.preventDefault(); // So it doesn't send to #empty
+      UserService.login(); // calling function login from UserService
     });
   });
-</script>
-
-<script>
-function PasswordSent() {
-  document.getElementById("PasswordSenOne").innerHTML = "Email was sent!"
-  document.getElementById("PasswordSenOne").style.background = "Green";
-}
 </script>
